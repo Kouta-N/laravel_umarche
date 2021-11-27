@@ -24,8 +24,15 @@ class LifeCycleTestController extends Controller
         app()->bind('sample',Sample::class);
         $sample = app()->make('sample');
         $sample->run();
-
         dd($test,app());
+    }
+
+    public function showServiceProviderTest()
+    {
+        $encrypt = app()->make('encrypter');
+        $password = $encrypt->encrypt('password');
+        $sample = app()->make('serviceProviderTest');
+        dd($sample, $password, $encrypt->decrypt($password));
     }
 }
 
