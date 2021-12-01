@@ -7,6 +7,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -17,6 +18,45 @@ class AuthenticatedSessionController extends Controller
      */
     public function create()
     {
+        $collaborators = [
+            [
+                'first_name' =>  '',
+                'last_name' =>  '',
+                'middle_name' => '',
+                'suffix' => '',
+                'email' => '',
+                'affiliation' => '',
+            ],
+            [
+                'first_name' =>  '',
+                'last_name' =>  '',
+                'middle_name' => '',
+                'suffix' => '',
+                'email' => '',
+                'affiliation' => '',
+            ]
+        ];
+
+        $testCollaborators = array();
+        for ($i = 0; $i < 51; $i++) {
+            $testCollaborators = array_merge(
+                $testCollaborators,
+                array([
+                    'first_name' => 'test',
+                    'last_name' => 'test',
+                    'middle_name' => 'test',
+                    'suffix' => 'test',
+                    'email' => 'test@test.com',
+                    'affiliation' => 'test',
+                ])
+            );
+        }
+
+        $test = Str::random(51);
+
+
+        dd($test);
+
         return view('user.auth.login');
     }
 
